@@ -4,7 +4,16 @@ module.exports = {
         app: './app.js'
     },
     output: {
-        path: path.join(__dirname,'dist/'),
-        filename: 'boundle.js'
+        path: path.join(__dirname, 'dist/'),
+        filename: '[name].[hash:8].js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                use: 'babel-loader',
+                exclude: '/node_modules/'
+            }
+        ]
     }
 }
