@@ -1,10 +1,11 @@
 let webpack = require('webpack')
+let cleanWebpackPlugin = require('clean-webpack-plugin')
 const path = require('path')
 module.exports = {
     // 提取公告代码对单入口无效
     entry: {
-        app: './app.js',
-        app2:'./app2.js'
+        app: './app.js'
+        // app2:'./app2.js'
     },
     output: {
         path: path.join(__dirname, 'dist/'),
@@ -21,9 +22,12 @@ module.exports = {
         ]
     },
     plugins:[
-        new webpack.optimize.CommonsChunkPlugin({
-          name:'common',
-          minChunks:2
+        // new webpack.optimize.CommonsChunkPlugin({
+        //   name:'common',
+        //   minChunks:2
+        // })
+        new cleanWebpackPlugin(['./dist'],{
+            verbose:true
         })
     ]
 }

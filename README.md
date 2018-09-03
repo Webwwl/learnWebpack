@@ -6,3 +6,7 @@ learn how to use webpack
 
 ### babel-polyfill  垫片 全局注册  适用于应用开发
 ### babel-transform-runtime  局部实现  使用于 框架开发
+
+### require.ensure(depandencies,successCallback,errorCallback,chunkName)
+异步加载
+
