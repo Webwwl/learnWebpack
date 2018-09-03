@@ -1,11 +1,15 @@
+let webpack = require('webpack')
 const path = require('path')
 module.exports = {
+    // 提取公告代码对单入口无效
     entry: {
-        app: './app.js'
+        app: './app.js',
+        app2:'./app2.js'
     },
     output: {
         path: path.join(__dirname, 'dist/'),
-        filename: '[name].js'
+        filename: '[name].boundle.js',
+        chunkFilename: '[name].chunk.js'
     },
     module: {
         rules: [
@@ -15,5 +19,11 @@ module.exports = {
                 exclude: '/node_modules/'
             }
         ]
-    }
+    },
+    plugins:[
+        new webpack.optimize.CommonsChunkPlugin({
+          name:'common',
+          minChunks:2
+        })
+    ]
 }
