@@ -1,16 +1,16 @@
-// import './moduleA'
-// import './moduleB'
+let myModule = 'A'
 
-require.ensure(['./moduleA'],function (require) {
-    let moduleA = require('./moduleA');
-},'moduleA')
+// 提前将moduleC引入进来,这样A、B的打包代码里就不会有moduleC了
+// moduleC此时在app.boundle.js中
+require.include('./moduleC')
 
-require.ensure(['./moduleB'],function (require) {
-    let moduleB = require('./moduleB')
-},'moduleB')
-
-require.ensure(['lodash'],function () {
-    let _ = require('lodash')
-    let res = _.join(['hello','world'],'---')
-},'lodash')
+if(myModule === 'A'){
+    import(/* webpackChunkName:'moduleA' */'./moduleA').then(function (moduleA) {
+        console.log(moduleA)
+    })
+} else if(module === 'B'){
+    import(/*  webpackChunkName: "moduleB" */'./moduleB').then( function (moduleB) {
+        console.log(moduleB)
+    })
+}
 

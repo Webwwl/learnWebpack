@@ -10,3 +10,7 @@ learn how to use webpack
 ### require.ensure(depandencies,successCallback,errorCallback,chunkName)
 异步加载
 
+### import(module).then( module => {})
+异步
+> require.ensure 引入文件但不一定执行，需要在successCallback中require相应的module
+> import() 引入文件并执行  

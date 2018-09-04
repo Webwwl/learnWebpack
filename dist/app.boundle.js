@@ -29,7 +29,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		3: 0
+/******/ 		2: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({"0":"lodash","1":"moduleB","2":"moduleA"}[chunkId]||chunkId) + ".chunk.js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + ".chunk.js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -136,36 +136,81 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "F:\\Webpack\\learnWebpack\\dist\\";
 /******/
 /******/ 	// on error function for async loading
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
-/******/ ({
+/******/ ([
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/***/ 3:
+"use strict";
+/* unused harmony default export */ var _unused_webpack_default_export = ('moduleC');
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// import './moduleA'
-// import './moduleB'
-__webpack_require__.e/* require.ensure */(2).then((function (require) {
-  let moduleA = __webpack_require__(0);
-}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+/* WEBPACK VAR INJECTION */(function(module) {let myModule = 'A';
 
-__webpack_require__.e/* require.ensure */(1).then((function (require) {
-  let moduleB = __webpack_require__(1);
-}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+undefined/*! require.include ./moduleC */;
 
-__webpack_require__.e/* require.ensure */(0).then((function () {
-  let _ = __webpack_require__(2);
+if (myModule === 'A') {
+  new Promise(resolve => {
+    __webpack_require__.e/* require.ensure */(1).then((require => {
+      resolve(__webpack_require__(
+      /* webpackChunkName:'moduleA' */
+      3));
+    }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+  }).then(function (moduleA) {
+    console.log(moduleA);
+  });
+} else if (module === 'B') {
+  new Promise(resolve => {
+    __webpack_require__.e/* require.ensure */(0).then((require => {
+      resolve(__webpack_require__(
+      /*  webpackChunkName: "moduleB" */
+      4));
+    }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+  }).then(function (moduleB) {
+    console.log(moduleB);
+  });
+}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
 
-  let res = _.join(['hello', 'world'], '---');
-}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = function (module) {
+  if (!module.webpackPolyfill) {
+    module.deprecate = function () {};
+
+    module.paths = []; // module.parent = undefined by default
+
+    if (!module.children) module.children = [];
+    Object.defineProperty(module, "loaded", {
+      enumerable: true,
+      get: function () {
+        return module.l;
+      }
+    });
+    Object.defineProperty(module, "id", {
+      enumerable: true,
+      get: function () {
+        return module.i;
+      }
+    });
+    module.webpackPolyfill = 1;
+  }
+
+  return module;
+};
 
 /***/ })
-
-/******/ });
+/******/ ]);
