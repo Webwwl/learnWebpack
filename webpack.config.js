@@ -1,5 +1,6 @@
 let webpack = require('webpack')
 let cleanWebpackPlugin = require('clean-webpack-plugin')
+let extractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const path = require('path')
 module.exports = {
     // 提取公告代码对单入口无效
@@ -21,39 +22,42 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                use: extractTextWebpackPlugin.extract({
+                    // 不分离css时使用的loader
+                    fallback: {
+                        loader: 'style-loader',
+                        options: {
+                            // 将style标签插入浏览器时执行的js commonJs规范
+                            transform: './css/transform.js'
+                        }
+                    },
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                // modules: true,
+                                minimize: true
+                                // localIdentName: '[path][name]'
+                            }
+                        }
+                    ]
+                })
+            },
+            {
+                test: /\.s[ac]ss$/,
                 use: [
                     {
-                        loader: 'style-loader',
-                        options:{
-                            // 将style标签插入浏览器是执行的js commonJs规范
-                            transform:'./css/transform.js'
-                        }
+                        loader: 'style-loader'
                     },
                     {
                         loader: 'css-loader',
-                        options:{
-                            modules:true,
-                            Minimize:true,
-                            localIdentName:'[path][name]'
-                        }
-                    }
-                ]
-            },
-            {
-                test:/\.s[ac]ss$/,
-                use: [
-                    {
-                        loader:'style-loader'
-                    },
-                    {
-                        loader:'css-loader',
-                        options:{
+                        options: {
                             // modules:true,
-                            Minimize:true
+                            minimize: true
                         }
                     },
                     {
-                        loader:'sass-loader'
+                        loader: 'sass-loader'
                     }
                 ]
             }
@@ -62,6 +66,11 @@ module.exports = {
     plugins: [
         new cleanWebpackPlugin(['./dist'], {
             verbose: true
+        }),
+        new extractTextWebpackPlugin({
+            filename: '[name].min.css',
+            //指定提取css的范围  
+            allChunks:false
         })
     ]
 }

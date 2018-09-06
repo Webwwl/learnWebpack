@@ -5,3 +5,6 @@ body{
 .danger{
     color:red;
 }
+.goRight{
+    animation: goRight 3s linear 1s 4 reverse;
+}
