@@ -1,3 +1,6 @@
 div.content{
     color:blue;
 }
+.error{
+    composes: danger from './common.css'
+}

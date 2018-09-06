@@ -30,7 +30,30 @@ module.exports = {
                         }
                     },
                     {
-                        loader: 'css-loader'
+                        loader: 'css-loader',
+                        options:{
+                            modules:true,
+                            Minimize:true,
+                            localIdentName:'[path][name]'
+                        }
+                    }
+                ]
+            },
+            {
+                test:/\.s[ac]ss$/,
+                use: [
+                    {
+                        loader:'style-loader'
+                    },
+                    {
+                        loader:'css-loader',
+                        options:{
+                            // modules:true,
+                            Minimize:true
+                        }
+                    },
+                    {
+                        loader:'sass-loader'
                     }
                 ]
             }

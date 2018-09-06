@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "F:\\Webpack\\learnWebpack\\dist\\";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -147,16 +147,19 @@ function toComment(sourceMap) {
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = function (css) {
-    console.log(css)
-    if (window.innerWidth > 768) {
-      return css.replace('blue','green')
-    } else {
-        return css.replace('blue','yellow')
-    }
-}
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "body{\r\n    font-size:16px;\r\n}\r\n\r\n.css-common{\r\n    color:red;\r\n}", ""]);
+
+// exports
+exports.locals = {
+	"danger": "css-common"
+};
 
 /***/ }),
 /* 2 */
@@ -228,7 +231,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(6);
+var	fixUrls = __webpack_require__(7);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -564,30 +567,47 @@ function updateLink (link, options, obj) {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+module.exports = function (css) {
+    console.log(css)
+    if (window.innerWidth > 768) {
+      return css.replace('blue','green')
+    } else {
+        return css.replace('blue','yellow')
+    }
+}
+
+/***/ }),
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_index_css__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_index_css__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_index_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_common_css__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_common_css__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_common_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_common_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_index_scss__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__css_index_scss__);
 
 
+
+document.querySelector('.content').className += ' ' + __WEBPACK_IMPORTED_MODULE_1__css_common_css___default.a.danger;
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(5);
+var content = __webpack_require__(6);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
 var transform;
 var insertInto;
 
-transform = __webpack_require__(1);
+transform = __webpack_require__(3);
 
 var options = {"transform":"./css/transform.js","hmr":true}
 
@@ -599,8 +619,8 @@ var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../node_modules/_css-loader@1.0.0@css-loader/index.js!./index.css", function() {
-		var newContent = require("!!../node_modules/_css-loader@1.0.0@css-loader/index.js!./index.css");
+	module.hot.accept("!!../node_modules/_css-loader@1.0.0@css-loader/index.js??ref--1-1!./index.css", function() {
+		var newContent = require("!!../node_modules/_css-loader@1.0.0@css-loader/index.js??ref--1-1!./index.css");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 
@@ -626,21 +646,24 @@ if(false) {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
 // imports
-
+exports.i(__webpack_require__(1), undefined);
 
 // module
-exports.push([module.i, "div.content{\r\n    color:blue;\r\n}", ""]);
+exports.push([module.i, "div.css-index{\r\n    color:blue;\r\n}\r\n.css-index{\r\n}", ""]);
 
 // exports
-
+exports.locals = {
+	"content": "css-index",
+	"error": "css-index " + __webpack_require__(1).locals["danger"] + ""
+};
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 /**
@@ -729,18 +752,18 @@ module.exports = function (css) {
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(8);
+var content = __webpack_require__(1);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
 var transform;
 var insertInto;
 
-transform = __webpack_require__(1);
+transform = __webpack_require__(3);
 
 var options = {"transform":"./css/transform.js","hmr":true}
 
@@ -752,8 +775,8 @@ var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../node_modules/_css-loader@1.0.0@css-loader/index.js!./common.css", function() {
-		var newContent = require("!!../node_modules/_css-loader@1.0.0@css-loader/index.js!./common.css");
+	module.hot.accept("!!../node_modules/_css-loader@1.0.0@css-loader/index.js??ref--1-1!./common.css", function() {
+		var newContent = require("!!../node_modules/_css-loader@1.0.0@css-loader/index.js??ref--1-1!./common.css");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 
@@ -779,7 +802,57 @@ if(false) {
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(10);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(2)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../node_modules/_css-loader@1.0.0@css-loader/index.js??ref--2-1!../node_modules/_sass-loader@7.1.0@sass-loader/lib/loader.js!./index.scss", function() {
+		var newContent = require("!!../node_modules/_css-loader@1.0.0@css-loader/index.js??ref--2-1!../node_modules/_sass-loader@7.1.0@sass-loader/lib/loader.js!./index.scss");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -787,7 +860,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "body{\r\n    font-size:16px;\r\n}", ""]);
+exports.push([module.i, "div.content {\n  color: red;\n  background: green; }\n", ""]);
 
 // exports
 
