@@ -1,5 +1,6 @@
-### style-loader  负责将css代码通过style标签插入html
-options: transform  可在style标签插入浏览器是触发  指定的文件应遵循commonJs规范
-输入css字符,输出css字符，中间可执行对css的操作
+### tree-shaking
+tree-shaking,摇晃大树，枯叶落地,tree-shaking的目的就是将程序中引入但未使用的代码剔除，减少打包后文件大小。
 
-### css-loader 处理url等css引入问题
+#### lodash需要配置babel进行tree-shaking,安装插件 babel-plugin-lodash<br>
+
+webpack.optimize.UglifyJsPlugin会报错，请安装`uglifyjs-webpack-plugin`替代

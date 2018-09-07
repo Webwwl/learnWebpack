@@ -1,6 +1,7 @@
 let webpack = require('webpack')
 let cleanWebpackPlugin = require('clean-webpack-plugin')
 let extractTextWebpackPlugin = require('extract-text-webpack-plugin')
+let uglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
 module.exports = {
     // 提取公告代码对单入口无效
@@ -71,6 +72,7 @@ module.exports = {
             filename: '[name].min.css',
             //指定提取css的范围  
             allChunks:false
-        })
+        }),
+        new uglifyjsWebpackPlugin()
     ]
 }

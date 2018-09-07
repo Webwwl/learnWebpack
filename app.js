@@ -4,6 +4,11 @@ import './css/index.scss'
 
 document.querySelector('.content').className += ' ' + common.danger
 
-import(/* webpackChunkName: 'a' */ './css/a.css').then( a => {
+import(/* webpackChunkName: 'a' */ './css/a.css').then(a => {
     console.log(a)
 })
+
+import { chunk } from 'lodash'
+import { a } from './utils/util'
+console.log(a())
+console.log( chunk(['a','b'],1))

@@ -1,6 +1,7 @@
 {
     "plugins":[
         "@babel/transform-runtime",
-        "dynamic-import-webpack"
+        "dynamic-import-webpack",
+        "lodash"
     ]
 }
