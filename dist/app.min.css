@@ -1,16 +1,12 @@
-div.content{
-    color:blue;
-    font-size: 20px;
-}
-.error{
-    /* composes: danger from './common.css' */
-}body{
-    font-size:16px;
+div.content {
+  color: blue;
+  font-size: 20px;
 }
 
-.danger{
-    color:red;
+body {
+  font-size: 16px;
 }
-.goRight{
-    animation: goRight 3s linear 1s 4 reverse;
+
+.goRight {
+  animation: goRight 3s linear 1s 4 reverse;
 }

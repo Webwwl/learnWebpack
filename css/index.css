@@ -2,6 +2,3 @@ div.content{
     color:blue;
     font-size: 20px;
 }
-.error{
-    /* composes: danger from './common.css' */
-}

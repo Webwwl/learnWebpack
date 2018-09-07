@@ -2,6 +2,8 @@ let webpack = require('webpack')
 let cleanWebpackPlugin = require('clean-webpack-plugin')
 let extractTextWebpackPlugin = require('extract-text-webpack-plugin')
 let uglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin')
+let purifyCss = require('purifycss-webpack')
+let glob = require('glob-all')
 const path = require('path')
 module.exports = {
     // 提取公告代码对单入口无效
@@ -73,6 +75,12 @@ module.exports = {
             //指定提取css的范围  
             allChunks:false
         }),
-        new uglifyjsWebpackPlugin()
+        new uglifyjsWebpackPlugin(),
+        new purifyCss({
+            paths:glob.sync([
+                path.join(__dirname,'./index.html'),
+                path.join(__dirname,'./src/*.js')
+            ])
+        })
     ]
 }
