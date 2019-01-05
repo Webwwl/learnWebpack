@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "ws server",
+            "program": "/Users/wwl/Documents/Project/Demo/browser-pcm-stream/demoWebsockServer.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "ws server2",
+            "program": "/Users/wwl/Documents/Project/Demo/browser-pcm-stream/demoWebsockServer2.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "demoSliceUpload",
+            "program": "/Users/wwl/Documents/Project/Demo/browser-pcm-stream/demoWebsockServer3.js"
+        }
+    ]
+}
