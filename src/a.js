@@ -1,3 +1,2 @@
-import './other/moduleA'
-console.log('this is a')
-export default 'a'
+import c from './other/c.js'
+export const a = 'a'

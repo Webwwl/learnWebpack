@@ -1,66 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-        .container {
-            margin-top: 100px;
-            text-align: center;
-        }
-        span, input {
-            display: inline-block;
-            height: 20px;
-            line-height: 20px;
-        }
-        span {
-            border: 1px solid #ccc;
-            padding: 0 10px;
-            vertical-align: bottom;
-        }
-    </style>
 </head>
-
 <body>
-    <div class="container">
-        <input type="text" placeholder="card">
-        <span>click</span>
-    </div>
-
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
-    <script>
-        wx.config({
-            jsApiList: ["addCard"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-        })
-        let input = document.querySelector('input')
-        let span = document.querySelector('span')
-        span.onclick = function () {
-            let cardExt = input.value.trim()
-            console.log('cardExt:', cardExt)
-            wx.addCard({
-                cardList: [{
-                    cardId: 'pzlO5jk3_L4d1OQcwzMhjXqWXLKE',
-                    cardExt: cardExt
-                }], // 需要添加的卡券列表
-                success: function (res) {
-                    var cardList = res.cardList; // 添加的卡券列表信息
-                    window.alert('res:', JSON.stringify(res))
-                    window.alert('res cardlist:', JSON.stringify(res.cardList))
-                    window.location.href = 'http://www.baidu.com'
-                },
-                fail: function (err) {
-                    window.alert('error:', JSON.stringify(err))
-                }
-            });
-        }
-    </script>
-<script type="text/javascript" src="vendors~main.3360ee3aebccec5b57b2.boundle.js"></script><script type="text/javascript" src="main.boundle.js"></script></body>
-
+    
+<script type="text/javascript" src="common~main.chunk.js"></script><script type="text/javascript" src="main.boundle.js"></script></body>
 </html>

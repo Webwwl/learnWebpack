@@ -44,28 +44,13 @@ module.exports = {
         splitChunks: {
             chunks: 'all',
             minSize: 10,
-            // maxSize: 20,
             minChunks: 2,
             automaticNameDelimiter: '~',
             name: true,
             cacheGroups: {
-                vendors: {
-                    test: /node_modules/,
-                    priority: -10,
-                    minChunks: 1,
-                    filename: '[name].[hash].boundle.js'
-                },
                 common: {
-                    chunks: 'async',
-                    priority: 0,
-                    minChunks: 1,
-                    minSize: 10,
-                },
-                other: {
-                    chunks: 'all',
-                    priority: 1,
-                    minChunks: 2,
-                    minSize: 10,
+                    test: /src\/other/,
+                    enforce: true
                 }
             }
         },

@@ -61,11 +61,6 @@
 /******/
 /******/ 	var deferredModules = [];
 /******/
-/******/ 	// script path function
-/******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"other~common-app1~common-app2":"other~common-app1~common-app2","common~common-app1":"common~common-app1","common~common-app2":"common~common-app2"}[chunkId]||chunkId) + ".chunk.js"
-/******/ 	}
-/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/
@@ -90,65 +85,6 @@
 /******/ 		return module.exports;
 /******/ 	}
 /******/
-/******/ 	// This file contains only the entry chunk.
-/******/ 	// The chunk loading function for additional chunks
-/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
-/******/ 		var promises = [];
-/******/
-/******/
-/******/ 		// JSONP chunk loading for javascript
-/******/
-/******/ 		var installedChunkData = installedChunks[chunkId];
-/******/ 		if(installedChunkData !== 0) { // 0 means "already installed".
-/******/
-/******/ 			// a Promise means "currently loading".
-/******/ 			if(installedChunkData) {
-/******/ 				promises.push(installedChunkData[2]);
-/******/ 			} else {
-/******/ 				// setup Promise in chunk cache
-/******/ 				var promise = new Promise(function(resolve, reject) {
-/******/ 					installedChunkData = installedChunks[chunkId] = [resolve, reject];
-/******/ 				});
-/******/ 				promises.push(installedChunkData[2] = promise);
-/******/
-/******/ 				// start chunk loading
-/******/ 				var head = document.getElementsByTagName('head')[0];
-/******/ 				var script = document.createElement('script');
-/******/ 				var onScriptComplete;
-/******/
-/******/ 				script.charset = 'utf-8';
-/******/ 				script.timeout = 120;
-/******/ 				if (__webpack_require__.nc) {
-/******/ 					script.setAttribute("nonce", __webpack_require__.nc);
-/******/ 				}
-/******/ 				script.src = jsonpScriptSrc(chunkId);
-/******/
-/******/ 				onScriptComplete = function (event) {
-/******/ 					// avoid mem leaks in IE.
-/******/ 					script.onerror = script.onload = null;
-/******/ 					clearTimeout(timeout);
-/******/ 					var chunk = installedChunks[chunkId];
-/******/ 					if(chunk !== 0) {
-/******/ 						if(chunk) {
-/******/ 							var errorType = event && (event.type === 'load' ? 'missing' : event.type);
-/******/ 							var realSrc = event && event.target && event.target.src;
-/******/ 							var error = new Error('Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')');
-/******/ 							error.type = errorType;
-/******/ 							error.request = realSrc;
-/******/ 							chunk[1](error);
-/******/ 						}
-/******/ 						installedChunks[chunkId] = undefined;
-/******/ 					}
-/******/ 				};
-/******/ 				var timeout = setTimeout(function(){
-/******/ 					onScriptComplete({ type: 'timeout', target: script });
-/******/ 				}, 120000);
-/******/ 				script.onerror = script.onload = onScriptComplete;
-/******/ 				head.appendChild(script);
-/******/ 			}
-/******/ 		}
-/******/ 		return Promise.all(promises);
-/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -202,9 +138,6 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
-/******/ 	// on error function for async loading
-/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
-/******/
 /******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
 /******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
 /******/ 	jsonpArray.push = webpackJsonpCallback;
@@ -214,12 +147,36 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push(["./src/main.js","vendors~main"]);
+/******/ 	deferredModules.push(["./src/main.js","common~main"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./src/a.js":
+/*!******************!*\
+  !*** ./src/a.js ***!
+  \******************/
+/*! exports provided: a */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return a; });\n/* harmony import */ var _other_c_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./other/c.js */ \"./src/other/c.js\");\n\nvar a = 'a';\n\n//# sourceURL=webpack:///./src/a.js?");
+
+/***/ }),
+
+/***/ "./src/b.js":
+/*!******************!*\
+  !*** ./src/b.js ***!
+  \******************/
+/*! exports provided: b */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"b\", function() { return b; });\n/* harmony import */ var _other_c_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./other/c.js */ \"./src/other/c.js\");\n\nvar b = 'b';\n\n//# sourceURL=webpack:///./src/b.js?");
+
+/***/ }),
 
 /***/ "./src/main.js":
 /*!*********************!*\
@@ -229,19 +186,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash_join__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash/join */ \"./node_modules/_lodash@4.17.11@lodash/join.js\");\n/* harmony import */ var lodash_join__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_join__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ \"./src/utils.js\");\n\n// import $ from 'jquery'\n// import { join }  from 'lodash'\n//require.include('./moduleA.js')\n// import a from './a'\n// import b from './b'\n// let arr = join([1,2,3])\n// import $ from 'jquery'\n\nconsole.log('c res: ', Object(_utils__WEBPACK_IMPORTED_MODULE_1__[\"c\"])());\nvar flag = 'a';\nconsole.log(lodash_join__WEBPACK_IMPORTED_MODULE_0___default.a); // import './a.js'\n// import './b.js'\n\nPromise.all(/*! import() | common-app1 */[__webpack_require__.e(\"other~common-app1~common-app2\"), __webpack_require__.e(\"common~common-app1\")]).then(__webpack_require__.bind(null, /*! ./a.js */ \"./src/a.js\"));\nPromise.all(/*! import() | common-app2 */[__webpack_require__.e(\"other~common-app1~common-app2\"), __webpack_require__.e(\"common~common-app2\")]).then(__webpack_require__.bind(null, /*! ./b.js */ \"./src/b.js\")); // import 'jquery'\n// import(/* webpackChunkName: 'vendor' */'jquery').then( $ => {\n//     console.log(typeof $)\n// })\n// if (flag === 'a') {\n//     import(/* webpackChunkName: 'a' */'./a.js').then(a => {\n//         console.log(a)\n//     })\n// } else {\n//     import(/* webpackChunkName: 'b' */'./b.js').then(b => {\n//         console.log(b)\n//     })\n// }\n// if (flag === 'a') {\n//     require.ensure([], (require) => {\n//         console.log(require('./a.js'))\n//     }, 'a')\n// } else {\n//     require.ensure([], (require) => {\n//         console.log(require('./b.js'))\n//     }, 'b')\n// }\n\n//# sourceURL=webpack:///./src/main.js?");
-
-/***/ }),
-
-/***/ "./src/utils.js":
-/*!**********************!*\
-  !*** ./src/utils.js ***!
-  \**********************/
-/*! exports provided: a, b, c */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return a; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"b\", function() { return b; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"c\", function() { return c; });\nfunction a() {\n  return 'this is a';\n}\n\nfunction b() {\n  return 'this is b';\n}\n\nfunction c() {\n  return 'this is c';\n}\n\n\n\n//# sourceURL=webpack:///./src/utils.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _a_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./a.js */ \"./src/a.js\");\n/* harmony import */ var _b_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./b.js */ \"./src/b.js\");\n\n // import(/* webpackChunkName: 'same' */'./a.js')\n// import(/* webpackChunkName: 'same' */'./b.js')\n\n//# sourceURL=webpack:///./src/main.js?");
 
 /***/ })
 
