@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "node",
             "request": "launch",
@@ -21,6 +22,18 @@
             "request": "launch",
             "name": "demoSliceUpload",
             "program": "/Users/wwl/Documents/Project/Demo/browser-pcm-stream/demoWebsockServer3.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "test",
+            "program": "/Users/wwl/Documents/Project/Test/test.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "build/dev",
+            "program": "/Users/wwl/Documents/Project/Webpack/build/dev.js"
         }
     ]
 }

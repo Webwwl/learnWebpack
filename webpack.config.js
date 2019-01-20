@@ -4,7 +4,9 @@ const cleanWebapckPlguin = require('clean-webpack-plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const boundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
-module.exports = {
+const FileNamesPlugin = require('./plugins/filename')
+
+let config = {
     entry: {
         main: './src/main.js',
         // main2: './src/main2.js'
@@ -13,7 +15,7 @@ module.exports = {
     mode: 'development',
     output: {
         path: path.resolve(__dirname, 'dist/'),
-        filename: '[name].boundle.js',
+        filename: 'js/[name].boundle.js',
         chunkFilename: '[name].chunk.js'
     },
     module: {
@@ -32,13 +34,28 @@ module.exports = {
                 ]
             },
             {
+                test: /\.vue$/,
+                use: ['vue-loader']
+            },
+            {
                 test: /\.less/,
                 use: ['style-loader', 'css-loader', 'less-loader']
             }
         ]
     },
     devServer: {
-      port: 3000
+      port: 3000,
+    //   publicPath: '/assets/',
+      compress: true,
+      before(app) {
+        app.get('/mock/test', (req, res) => {
+            res.json({
+                status: 0
+            })
+        })
+      }
+    //   contentBase: path.join(__dirname,'public'),
+    //   hot: true
     },
     optimization: {
         splitChunks: {
@@ -46,7 +63,7 @@ module.exports = {
             minSize: 10,
             minChunks: 2,
             automaticNameDelimiter: '~',
-            name: true,
+            name: 'js/',
             cacheGroups: {
                 common: {
                     test: /src\/other/,
@@ -72,10 +89,23 @@ module.exports = {
         //     minChunks: 2,
         //     chunks: ['main']
         // }),
-        new htmlWebpackPlugin({
-            template: './index.html'
-        }),
-        new boundleAnalyzerPlugin()
+        // new webpack.HotModuleReplacementPlugin(),
+        new htmlWebpackPlugin(),
+        new FileNamesPlugin()
+        // new boundleAnalyzerPlugin()
         // new webpack.optimize.UglifyJsPlugin()
     ]
 }
+
+module.exports = config
+// module.exports = (env, args) => {
+// 	console.log("​env", env)
+//     if(args.flag == 'true') {
+//         console.log('hahaha')
+//         config.devtool = 'source-map'
+//     } else {
+//         console.log('hehehe')
+//         config.devtool = 'inline-source-map'
+//     }
+//     return config
+// }

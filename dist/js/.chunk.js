@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["common~main"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["js/"],{
 
 /***/ "./src/other/c.js":
 /*!************************!*\

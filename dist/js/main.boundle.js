@@ -147,22 +147,33 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push(["./src/main.js","common~main"]);
+/******/ 	deferredModules.push(["./src/main.js","js/"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/_webpack@4.27.1@webpack/buildin/harmony-module.js":
+/*!*******************************************!*\
+  !*** (webpack)/buildin/harmony-module.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = function(originalModule) {\n\tif (!originalModule.webpackPolyfill) {\n\t\tvar module = Object.create(originalModule);\n\t\t// module.parent = undefined by default\n\t\tif (!module.children) module.children = [];\n\t\tObject.defineProperty(module, \"loaded\", {\n\t\t\tenumerable: true,\n\t\t\tget: function() {\n\t\t\t\treturn module.l;\n\t\t\t}\n\t\t});\n\t\tObject.defineProperty(module, \"id\", {\n\t\t\tenumerable: true,\n\t\t\tget: function() {\n\t\t\t\treturn module.i;\n\t\t\t}\n\t\t});\n\t\tObject.defineProperty(module, \"exports\", {\n\t\t\tenumerable: true\n\t\t});\n\t\tmodule.webpackPolyfill = 1;\n\t}\n\treturn module;\n};\n\n\n//# sourceURL=webpack:///(webpack)/buildin/harmony-module.js?");
+
+/***/ }),
+
 /***/ "./src/a.js":
 /*!******************!*\
   !*** ./src/a.js ***!
   \******************/
-/*! exports provided: a */
+/*! exports provided: a, clickHandle */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return a; });\n/* harmony import */ var _other_c_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./other/c.js */ \"./src/other/c.js\");\n\nvar a = 'a';\n\n//# sourceURL=webpack:///./src/a.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return a; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"clickHandle\", function() { return clickHandle; });\n/* harmony import */ var _other_c_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./other/c.js */ \"./src/other/c.js\");\n\nvar a = 'a';\nfunction clickHandle() {\n  console.log('result   yellow');\n}\nconsole.log('a changed');\nvar b = 'ok';\n\n//# sourceURL=webpack:///./src/a.js?");
 
 /***/ }),
 
@@ -174,7 +185,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"b\", function() { return b; });\n/* harmony import */ var _other_c_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./other/c.js */ \"./src/other/c.js\");\n\nvar b = 'b';\n\n//# sourceURL=webpack:///./src/b.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"b\", function() { return b; });\n/* harmony import */ var _other_c_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./other/c.js */ \"./src/other/c.js\");\n/* harmony import */ var _a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./a.js */ \"./src/a.js\");\n\n\nvar b = 'b';\nvar result = true;\nvar div = document.createElement('div');\ndiv.innerHTML = 'click';\nObject.assign(div.style, {\n  color: '#fff',\n  background: 'blue',\n  fontSize: '16px'\n});\nvar div2 = document.createElement('div');\ndiv2.innerHTML = 'click';\nObject.assign(div2.style, {\n  color: '#fff',\n  background: 'red',\n  fontSize: '16px'\n});\n\ndiv.onclick = function () {\n  console.log('result:', result);\n};\n\ndiv2.onclick = _a_js__WEBPACK_IMPORTED_MODULE_1__[\"clickHandle\"];\ndocument.body.append(div);\ndocument.body.append(div2);\n\n//# sourceURL=webpack:///./src/b.js?");
 
 /***/ }),
 
@@ -186,7 +197,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _a_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./a.js */ \"./src/a.js\");\n/* harmony import */ var _b_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./b.js */ \"./src/b.js\");\n\n // import(/* webpackChunkName: 'same' */'./a.js')\n// import(/* webpackChunkName: 'same' */'./b.js')\n\n//# sourceURL=webpack:///./src/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _a_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./a.js */ \"./src/a.js\");\n/* harmony import */ var _b_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./b.js */ \"./src/b.js\");\n\n\nconsole.log('a=>:', _a_js__WEBPACK_IMPORTED_MODULE_0__);\nconsole.log('b=>:', _b_js__WEBPACK_IMPORTED_MODULE_1__);\nconsole.log(\"​module\", module);\n\nif (false) {}\n\nPromise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./a.js */ \"./src/a.js\"));\nPromise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./b.js */ \"./src/b.js\"));\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/_webpack@4.27.1@webpack/buildin/harmony-module.js */ \"./node_modules/_webpack@4.27.1@webpack/buildin/harmony-module.js\")(module)))\n\n//# sourceURL=webpack:///./src/main.js?");
 
 /***/ })
 
