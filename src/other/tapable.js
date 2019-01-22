@@ -1,4 +1,6 @@
 import * as tapable from 'tapable'
+import './syncWaterfallHook'
+import './asyncParallerHook'
 
 let { SyncHook,
   SyncBailHook,
@@ -14,10 +16,9 @@ let sync1 = new SyncBailHook()
 
 sync1.tap('say', () => {
   console.log('say')
-  return true
 })
 
-sync1.tap('say2', () => {
+sync1.tap('say', () => {
   console.log('say2')
 })
 

@@ -12,6 +12,9 @@
   "keywords": [
     "webpack"
   ],
+  "bin": {
+    "my-webpack": "./bin/my-webpack.js"
+  },
   "author": "wwl",
   "license": "ISC",
   "devDependencies": {

@@ -75,25 +75,10 @@ let config = {
     },
     plugins: [
         new cleanWebapckPlguin(['dist']),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name: ['vendor'],
-        //     minChunks: Infinity
-        // }),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     async: 'async-common',
-        //     children: true,
-        //     minChunks: 2
-        // }),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name: ['common'],
-        //     minChunks: 2,
-        //     chunks: ['main']
-        // }),
         // new webpack.HotModuleReplacementPlugin(),
         new htmlWebpackPlugin(),
         new FileNamesPlugin()
         // new boundleAnalyzerPlugin()
-        // new webpack.optimize.UglifyJsPlugin()
     ]
 }
 
